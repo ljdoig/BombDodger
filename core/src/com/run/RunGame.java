@@ -2,6 +2,7 @@ package com.run;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -10,12 +11,15 @@ public class RunGame extends Game {
 	public static final int HEIGHT = 1080;
 	public static final int GROUND_HEIGHT = 245;
 
+	private Texture background;
 	private Scott scott;
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 
 	@Override
 	public void create() {
+		background = new Texture("background.jpg");
+
 		Scott.create();
 		scott = new Scott();
 
@@ -33,6 +37,7 @@ public class RunGame extends Game {
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
+		batch.draw(background, 0, 0);
 		scott.update(batch);
 		Bomb.updateBombs(batch, scott.rectangle);
 		batch.end();
@@ -43,6 +48,7 @@ public class RunGame extends Game {
 		Bomb.dispose();
 		Scott.dispose();
 		batch.dispose();
+		background.dispose();
 	}
 
 }
