@@ -1,4 +1,4 @@
-package com.run;
+package com.bomb_dodge;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

@@ -1,13 +1,13 @@
-package com.run;
+package com.bomb_dodge;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 
 public class MenuScreen implements Screen {
-    private final RunGame game;
+    private final DodgeGame game;
 
-    public MenuScreen(RunGame game) {
+    public MenuScreen(DodgeGame game) {
         this.game = game;
     }
 
@@ -24,13 +24,13 @@ public class MenuScreen implements Screen {
         game.batch.draw(game.background, 0, 0);
         game.drawCentredText(
                 "Press ENTER to begin",
-                RunGame.WIDTH / 2f,
-                RunGame.HEIGHT * 3 / 4f
+                DodgeGame.WIDTH / 2f,
+                DodgeGame.HEIGHT * 0.8f
         );
         game.batch.end();
 
         if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
-            game.setScreen(new GameScreen(game));
+            game.setScreen(new PlayScreen(game));
         }
     }
 

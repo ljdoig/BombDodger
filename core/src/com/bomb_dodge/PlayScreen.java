@@ -1,13 +1,15 @@
-package com.run;
+package com.bomb_dodge;
 
 import com.badlogic.gdx.Screen;
 
-public class GameScreen implements Screen {
-    private final RunGame game;
+public class PlayScreen implements Screen {
+    private final DodgeGame game;
+    private int wave;
     private final Scott scott;
 
-    public GameScreen(RunGame game) {
+    public PlayScreen(DodgeGame game) {
         this.game = game;
+        this.wave = 1;
         scott = new Scott();
     }
 
@@ -20,15 +22,26 @@ public class GameScreen implements Screen {
     public void render(float delta) {
         game.camera.update();
         game.batch.setProjectionMatrix(game.camera.combined);
+
         game.batch.begin();
         game.batch.draw(game.background, 0, 0);
+        game.drawCentredText(
+                String.format("Wave: %d", wave),
+                0.9f * DodgeGame.WIDTH,
+                0.9f * DodgeGame.HEIGHT
+        );
         scott.update(game.batch);
-        boolean collision = Bomb.updateBombs(game.batch, scott.rectangle);
-        if (collision) {
+        Bomb.updateBombs(game.batch, scott.rectangle);
+        if (Bomb.collisionJustOccurred()) {
             scott.takeDamage();
             if (scott.isDead()) {
-                System.out.println("DEAD");
+                game.setScreen(new GameOverScreen(game, wave));
             }
+        }
+        if (Bomb.waveFinished()) {
+            wave++;
+            scott.incrementHealth();
+            Bomb.reset(wave);
         }
         game.batch.end();
     }

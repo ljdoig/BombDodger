@@ -1,4 +1,4 @@
-package com.run;
+package com.bomb_dodge;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -11,8 +11,8 @@ import com.badlogic.gdx.math.Rectangle;
 public class Scott {
     private static final int WIDTH = 108;
     private static final int HEIGHT = 140;
-    private static final float SCOTT_SPEED = RunGame.WIDTH / 4f;
-    private static final int MAX_HEALTH = 10;
+    private static final float SCOTT_SPEED = DodgeGame.WIDTH / 3f;
+    private static final int MAX_HEALTH = 3;
     private static final float RUN_FRAME_TIME_S = 0.08f;
     private static final float HURT_TIME_S = 1;
     private static final int HURT_FLICKERS = 4;
@@ -32,8 +32,8 @@ public class Scott {
     public Scott() {
         runTimer = 0;
         rectangle = new Rectangle(
-                (RunGame.WIDTH - standingImage.getRegionWidth()) / 2f,
-                RunGame.GROUND_HEIGHT,
+                (DodgeGame.WIDTH - standingImage.getRegionWidth()) / 2f,
+                DodgeGame.GROUND_HEIGHT,
                 standingImage.getRegionWidth(),
                 standingImage.getRegionHeight()
         );
@@ -58,8 +58,8 @@ public class Scott {
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             // Update location
             rectangle.x += SCOTT_SPEED * Gdx.graphics.getDeltaTime();
-            if (rectangle.x > RunGame.WIDTH - standingImage.getRegionWidth()) {
-                rectangle.x = RunGame.WIDTH - standingImage.getRegionWidth();
+            if (rectangle.x > DodgeGame.WIDTH - standingImage.getRegionWidth()) {
+                rectangle.x = DodgeGame.WIDTH - standingImage.getRegionWidth();
             }
             // Update run frame and render
             if (runTimer < 0) {
@@ -107,5 +107,9 @@ public class Scott {
 
     public boolean isDead() {
         return health == 0;
+    }
+
+    public void incrementHealth() {
+        if (health < MAX_HEALTH) health++;
     }
 }

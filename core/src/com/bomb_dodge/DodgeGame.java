@@ -1,4 +1,4 @@
-package com.run;
+package com.bomb_dodge;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -7,10 +7,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class RunGame extends Game {
+public class DodgeGame extends Game {
 	public static final int WIDTH = 1920;
 	public static final int HEIGHT = 1080;
 	public static final int GROUND_HEIGHT = 245;
+	public static final int FONT_SIZE = 34;
 
 	public Texture background;
 	public OrthographicCamera camera;
@@ -30,7 +31,7 @@ public class RunGame extends Game {
 		camera.setToOrtho(false, WIDTH, HEIGHT);
 		batch = new SpriteBatch();
 		glyphLayout = new GlyphLayout();
-		font = FontLoader.load("Lotuscoder.ttf", 34);
+		font = FontLoader.load("Lotuscoder.ttf", FONT_SIZE);
 
 		setScreen(new MenuScreen(this));
 	}
@@ -52,9 +53,12 @@ public class RunGame extends Game {
 
 	public void drawCentredText(String s, float x, float y) {
 		glyphLayout.setText(font, s);
-		float drawX = x - glyphLayout.width / 2;
-		float drawY = y + glyphLayout.height / 2;
-		font.draw(batch, glyphLayout, drawX, drawY);
+		font.draw(
+				batch,
+				glyphLayout,
+				x - glyphLayout.width / 2,
+				y + glyphLayout.height / 2
+		);
 	}
 
 }

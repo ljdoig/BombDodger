@@ -1,4 +1,4 @@
-package com.run;
+package com.bomb_dodge;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -7,7 +7,7 @@ public class LifeBar {
     private static Texture HEART;
     private static Texture EMPTY_HEART;
     private static final float FIRST_HEART_X = 80;
-    private static final float Y = RunGame.HEIGHT - FIRST_HEART_X;
+    private static final float Y = DodgeGame.HEIGHT - FIRST_HEART_X;
     private static final float GAP = 50;
     private final int maxHealth;
 
@@ -33,8 +33,6 @@ public class LifeBar {
                     FIRST_HEART_X + i * GAP - HEART.getWidth() / 2f,
                     Y - HEART.getHeight() / 2f
             );
-            System.out.println(HEART.getHeight());
-            System.out.println(HEART.getWidth());
         }
         for (; i < maxHealth; i++) {
             batch.draw(
