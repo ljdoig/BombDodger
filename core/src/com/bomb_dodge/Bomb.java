@@ -29,7 +29,7 @@ public class Bomb {
     private static final int NUM_LEVEL_INCREASE = 10;
 
     private static float bombSpeed;
-    private static long bombSpawnIntervalNs = 1000000000;
+    private static long bombSpawnIntervalNs;
     private static int numBombsInWave;
     private static int bombCount;
     private static Array<Bomb> bombs;

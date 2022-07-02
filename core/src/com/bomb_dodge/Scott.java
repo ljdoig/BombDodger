@@ -12,7 +12,7 @@ public class Scott {
     private static final int WIDTH = 108;
     private static final int HEIGHT = 140;
     private static final float SCOTT_SPEED = DodgeGame.WIDTH / 3f;
-    private static final int MAX_HEALTH = 3;
+    private static final int MAX_HEALTH = 5;
     private static final float RUN_FRAME_TIME_S = 0.08f;
     private static final float HURT_TIME_S = 1;
     private static final int HURT_FLICKERS = 4;

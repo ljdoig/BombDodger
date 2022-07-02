@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class DodgeGame extends Game {
 	public static final int WIDTH = 1920;
@@ -15,6 +16,7 @@ public class DodgeGame extends Game {
 
 	public Texture background;
 	public OrthographicCamera camera;
+	private FitViewport viewport;
 	public SpriteBatch batch;
 	private GlyphLayout glyphLayout;
 	private BitmapFont font;
@@ -29,6 +31,8 @@ public class DodgeGame extends Game {
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, WIDTH, HEIGHT);
+		viewport = new FitViewport(DodgeGame.WIDTH, DodgeGame.HEIGHT, camera);
+		viewport.apply();
 		batch = new SpriteBatch();
 		glyphLayout = new GlyphLayout();
 		font = FontLoader.load("Lotuscoder.ttf", FONT_SIZE);
@@ -49,6 +53,11 @@ public class DodgeGame extends Game {
 		batch.dispose();
 		background.dispose();
 		font.dispose();
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		viewport.update(width, height);
 	}
 
 	public void drawCentredText(String s, float x, float y) {
